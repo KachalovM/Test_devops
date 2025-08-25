@@ -69,7 +69,7 @@ docker-compose down
 ## Технологии
 
 - **Backend**: Python 3.11, FastAPI
-- **БД**: PostgreSQL 15
+- **База данных**: PostgreSQL 15
 - **Контейнеризация**: Docker, Docker Compose
 - **CI/CD**: GitHub Actions
 - **ORM**: SQLAlchemy 2.0
