@@ -33,7 +33,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.PORT }}
           script: |
-            cd /opt/blog-server
+            cd /opt/blog-server/Test_devops
             docker-compose down
             git pull origin ${{ github.ref_name }}
             docker-compose up -d --build
