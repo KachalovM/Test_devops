@@ -1,0 +1,42 @@
+version: "3.8"
+
+services:
+  app:
+    build: .
+    ports:
+      - "8080:8000"
+    environment:
+      - POSTGRES_USER=blog_user
+      - POSTGRES_PASSWORD=blog_password
+      - POSTGRES_DB=blog_db
+      - POSTGRES_HOST=postgres
+      - POSTGRES_PORT=5432
+    depends_on:
+      - postgres
+    volumes:
+      - ./logs:/app/logs
+    restart: unless-stopped
+    networks:
+      - blog-network
+
+  postgres:
+    image: postgres:15
+    environment:
+      - POSTGRES_USER=blog_user
+      - POSTGRES_PASSWORD=blog_password
+      - POSTGRES_DB=blog_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./logs:/var/log/postgresql
+    ports:
+      - "5433:5432"
+    restart: unless-stopped
+    networks:
+      - blog-network
+
+volumes:
+  postgres_data:
+
+networks:
+  blog-network:
+    driver: bridge
